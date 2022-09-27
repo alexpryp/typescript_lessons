@@ -4,8 +4,16 @@ import './App.css';
 
 function App() {
   type Name = string;
+  let name: Name = 'Alexandr';
   let isCompleted: boolean = false;
-  const decimal: number = 5;
+  //isCompleted  = 42;  // Error
+  //isCompleted = '42';   // Error
+  isCompleted = true;
+  const decimal: number = 6;
+  const integer: number = 7.10;
+  const hex: number = 0xf00d;
+  const binary: number = 0b1010;
+  const octal: number = 0o744;
   const sentence: string = 'Yauhen';
   const nameString: string = `Hello, my name is ${ sentence }!`;
   const u: undefined = undefined;
@@ -17,16 +25,23 @@ function App() {
   
   let list1: number[] = [1, 2, 3];
   let list2: Array<number> = [1, 2, 3];
+
+  let a: [string, number];
+  a = ["hello", 10];
+  //Error casee:
+  //a = [10, "hello"]; // Type 'string' is not assignable to type 'number'
+
   let x: [string, number] = ["goodbuy", 42];
+
   let y: [any, any] = ["goodby", 42];
-  let z: Array<any> = [10, "hello"];
+  let z: Array<any> = [10, "hello", true]; 
   
   //Enum Type
   enum Directions {
-      Up,
-      Down,
-      Left,
-      Right
+    Up,
+    Down,
+    Left,
+    Right
   }
   console.log(Directions.Up);      // 0
   console.log(Directions.Down);    // 1
@@ -56,13 +71,21 @@ function App() {
   
   // Object Type
   const create = (o: object | null): void => { };
-  
+  //create(1);  // Argument of type '1' is not assignable to parameter of type 'object | null'
+  //create('42'); // Argument of type 'string' is not assignable to parameter of type 'object | null'
+  create({ obj: 1 });
+
   //Multiple types for one value
   let id: number | string;
+  id = 10;
+  id = '42';
+  //id = true;  //Type 'boolean' is not assignable to type 'string | number'
   
   // Type (Custom type creation)
-  type Name = string;
-  let ida: Name;
+  type Name1 = string;
+  let ida: Name1;
+  ida = "42";
+  //ida = 10;  //Type 'number' is not assignable to type 'string'
   
   //Reverse enum
   enum Directions2 {
@@ -114,9 +137,9 @@ function App() {
   console.log(createSkills('Jack', 'JS', 'ES6', 'React')); // "Jack, my skils are JS, ES6, React"
   
   // Void
-  const greetUser1: void = () => {
-      alert("Hello, nice to see you!");
-  };
+  //   const greetUser1: void = () => {
+  //       alert("Hello, nice to see you!");
+  //   };
   
   //Never Type
   // Function return Error
