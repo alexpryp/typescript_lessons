@@ -582,22 +582,29 @@ function App() {
 
 
 
-// Super type and Subtype
-type SuperType = {
-  name: string;
-};
+// // Super type and Subtype
+// type SuperType = {
+//   name: string;
+// };
 
-type SubType = {
-  name: string;
-  age: number;
-}
+// type SubType = {
+//   name: string;
+//   age: number;
+// }
 
-const subType: SubType = {
-  name: 'Ulbi TV',
-  age: 25
-};
+// const subType: SubType = {
+//   name: 'Ulbi TV',
+//   age: 25
+// };
+// // All OK? no errors
+// const superType: SuperType = subType;
 
-const superType: SuperType = subType;
+// const superType2: SuperType = { name: 'Ulbi TV' };
+// // // Type error
+// // const subType2: SubType = superType2;
+
+// //---------------------------------------------------------
+
 
 
 
