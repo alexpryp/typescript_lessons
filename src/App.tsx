@@ -517,8 +517,87 @@ function App() {
 
 
 
+// // Union types
+// let data: number | string;
+// data = 5;
+// data = 'str';
+
+// let color: 'red' | 'green';
 
 
+// type MainInfo = {
+//   firstname: string;
+//   lastname: string;
+// };
+
+// type AdditionalInfo = {
+//   age: number
+// };
+
+// type FullInfo = AdditionalInfo | MainInfo;
+
+// const info0: FullInfo = {
+//   firstname: '123',
+//   lastname: '123',
+//   age: 123
+// };
+
+// const info1: FullInfo = {
+//   firstname: '123',
+//   lastname: '123',
+// };
+
+// const info2: FullInfo = {
+//   age: 123
+// };
+
+// //---------------------------------------------------------
+
+
+// // Intersection type
+// type MainInfo = {
+//   firstname: string;
+//   lastname: string;
+// };
+
+// type AdditionalInfo = {
+//   age: number
+// };
+
+// type FullInfo = AdditionalInfo & MainInfo;
+
+// const info0: FullInfo = {
+//   firstname: '123',
+//   lastname: '123',
+//   age: 123
+// };
+
+// // // Type Error
+// // const info1: FullInfo = {
+// //   firstname: '123',
+// //   lastname: '123',
+// // };
+
+// //---------------------------------------------------------
+
+
+
+// Super type and Subtype
+type SuperType = {
+  name: string;
+};
+
+type SubType = {
+  name: string;
+  age: number;
+}
+
+const subType: SubType = {
+  name: 'Ulbi TV',
+  age: 25
+};
+
+const superType: SuperType = subType;
 
 
 
