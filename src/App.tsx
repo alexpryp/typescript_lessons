@@ -607,6 +607,72 @@ function App() {
 
 
 
+// // Special types
+
+// // // any type
+// // let value: any;
+// // value = 5;
+// // value = [];
+// // value = {};
+
+// // function logData(data: any) {
+// //   console.log(data);
+// // }
+
+
+// // // unknown type
+// // function logData(data: unknown) {
+// //   let value: string;
+// //   // // Type error
+// //   // value = data;
+
+// //   // No errors
+// //   if (typeof data === 'string') {
+// //     value = data;
+// //   }
+
+// //   console.log(data);
+// // }
+
+// // never type
+// enum Values {
+//   FIRST,
+//   SECOND,
+//   THIRD
+// };
+
+// function fn(value: Values) {
+//   console.log(value);
+
+//   switch(value) {
+//     case Values.FIRST:
+//       return 1;
+//     case Values.SECOND:
+//       return 2;
+//     default:
+//       // const exhaustiveCheck: never = value;
+//       return value;
+//   }
+// }
+
+// fn(Values.FIRST);
+// fn(Values.SECOND);
+// fn(Values.THIRD);
+
+
+// // void type
+// function fn1(text: string): void {
+//   console.log(text)
+// }
+
+// type Fn = (arg: number, arg2: string) => void;
+
+// // ---------------------------------------------------------
+
+
+
+
+
 
 
 
