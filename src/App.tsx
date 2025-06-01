@@ -671,6 +671,50 @@ function App() {
 
 
 
+// composite types
+
+// // interface and type
+// interface Address {
+//   city?: string;
+//   street?: string;
+//   coords: number[];
+// }
+
+// type User = {
+//   firstname: string;
+//   age?: number;
+//   address: Address;
+// }
+
+// const user: User = {
+//   firstname: 'Petrov',
+//   age: 35,
+//   address: {
+//     city: 'City',
+//     street: 'Street',
+//     coords: [123142, 346745]
+//   }
+// }
+
+// const users: User[] = [user];
+
+
+// literals
+type Color = 'red' | 'green' | 'blue';
+type Yellow = 'yellow';
+type Size = 4 | 8 | 16;
+type Bool = false | true;
+
+const color: Color = 'red';
+const color1: Color = 'green';
+  // // Error
+  // const color3: Color = 'sdfsdf';
+
+type EventName = 'click' | 'change';
+type EventHandler = `on${EventName}`;
+type Userid = `user_id_${bigint}`;
+type UserName = `user_name_${string}`;
+
 
 
 
