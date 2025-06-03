@@ -699,22 +699,98 @@ function App() {
 // const users: User[] = [user];
 
 
-// literals
-type Color = 'red' | 'green' | 'blue';
-type Yellow = 'yellow';
-type Size = 4 | 8 | 16;
-type Bool = false | true;
+// // literals
+// type Color = 'red' | 'green' | 'blue';
+// type Yellow = 'yellow';
+// type Size = 4 | 8 | 16;
+// type Bool = false | true;
 
-const color: Color = 'red';
-const color1: Color = 'green';
-  // // Error
-  // const color3: Color = 'sdfsdf';
+// const color: Color = 'red';
+// const color1: Color = 'green';
+//   // // Error
+//   // const color3: Color = 'sdfsdf';
 
-type EventName = 'click' | 'change';
-type EventHandler = `on${EventName}`;
-type Userid = `user_id_${bigint}`;
-type UserName = `user_name_${string}`;
+// type EventName = 'click' | 'change';
+// type EventHandler = `on${EventName}`;
+// type Userid = `user_id_${bigint}`;
+// type UserName = `user_name_${string}`;
 
+// // ---------------------------------------------------------
+
+
+
+// Generics
+interface MetaData {
+
+}
+
+interface Article {
+  title: string
+}
+
+interface User {
+  username: string;
+}
+
+interface ApiResponse<T, Meta, Value> {
+  status?: 'error' | 'success';
+  meta?: Meta;
+  requestId?: string;
+  data: T;
+  value?: Value;
+}
+
+interface MetaData {
+  timestamp: string
+}
+
+const responseFromUserApi: ApiResponse<User, MetaData> = {
+  data: {
+    username: '123'
+  },
+  meta: {
+    timestamp: '8468414554'
+  }
+}
+
+const responseFromArticleApi: ApiResponse<Article> = {
+  data: {
+    title: 'Ulbi TV'
+  }
+}
+
+interface Tree<T> {
+  id?: string;
+  name?: string;
+  value?: T;
+  children: Tree<T>[] | null;
+}
+
+const treeNode: Tree<User> = {
+  id: '10',
+  value: {
+    username: '123'
+  },
+  children: [
+    {
+      value: {
+        username: '123'
+      },
+      children: null
+    }
+  ]
+}
+
+// generics in functions
+function genericFn<T>(arg: T) {
+  return arg;
+}
+
+const arrowGeneric = <T, V>(arg: T, arg1: V): T => {
+  return arg;
+}
+
+const data = arrowGeneric<User, Article>({username: '123'}, {title: 'Title'});
 
 
 
