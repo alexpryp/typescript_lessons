@@ -849,6 +849,23 @@ class Order<T> {
   }
 }
 
+// Conditional types
+type isArray<T> = T extends any[] ? true : false; // A type that checks whether the passed generic is an array
+// // Error
+// const first:isArray<string> = true;
+// No error
+const second:isArray<string> = false;
+const third:isArray<string[]> = true;
+
+type User3 = {
+  username: string;
+}
+type RandomName<T> = T extends User3 ? { value: number } : { value: string };
+const fourth: RandomName<User3> = {value: 45654};
+const fifth: RandomName<number> = {value: 'string'};
+const sixth: RandomName<{usrname: string, age: number}> = {value: 'string'}
+
+
 
 
 
