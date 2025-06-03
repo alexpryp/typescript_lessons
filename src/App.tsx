@@ -811,6 +811,43 @@ function createEntity<T extends {id: string, createdAt: Date}>(arg: T) {
 
 const entity = createEntity<User>({id: '3245', createdAt: new Date()});
 
+// Default types
+interface User1 {
+  username: string;
+}
+
+interface Article1 {
+  title: string;
+}
+
+interface ApiResponse1<Data = string> {
+  status?: 'error' | 'success';
+  requestId?: string;
+  data: Data;
+}
+
+const response: ApiResponse1 = {
+  data: 'sdfsdf'
+}
+
+interface ApiResponse2<Data = User1> {
+  status?: 'error' | 'success';
+  requestId?: string;
+  data: Data;
+}
+
+const response1: ApiResponse2<User1> = {
+  data: {username: 'Username'},
+}
+
+// Generics in classes
+class Order<T> {
+  private data: T;
+
+  constructor(arg: T) {
+    this.data = arg;
+  }
+}
 
 
 
