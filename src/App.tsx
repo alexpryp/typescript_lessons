@@ -729,7 +729,9 @@ interface Article {
 }
 
 interface User {
-  username: string;
+  username?: string;
+  id: string;
+  createdAt: Date;
 }
 
 interface ApiResponse<T, Meta, Value> {
@@ -769,12 +771,16 @@ interface Tree<T> {
 const treeNode: Tree<User> = {
   id: '10',
   value: {
-    username: '123'
+    username: '123',
+    id: '324545',
+    createdAt: new Date(),
   },
   children: [
     {
       value: {
-        username: '123'
+        username: '123',
+        id: '324545',
+        createdAt: new Date(),
       },
       children: null
     }
@@ -790,8 +796,20 @@ const arrowGeneric = <T, V>(arg: T, arg1: V): T => {
   return arg;
 }
 
-const data = arrowGeneric<User, Article>({username: '123'}, {title: 'Title'});
+const data = arrowGeneric<User, Article>(
+  {username: '123',
+    id: '324545',
+    createdAt: new Date(),
+  },
+  {title: 'Title'}
+);
 
+// Constraints in generics
+function createEntity<T extends {id: string, createdAt: Date}>(arg: T) {
+  return arg.createdAt;
+}
+
+const entity = createEntity<User>({id: '3245', createdAt: new Date()});
 
 
 
