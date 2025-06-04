@@ -719,151 +719,264 @@ function App() {
 
 
 
-// Generics
-interface MetaData {
+// // Generics
+// interface MetaData {
 
+// }
+
+// interface Article {
+//   title: string
+// }
+
+// interface User {
+//   username?: string;
+//   id: string;
+//   createdAt: Date;
+// }
+
+// interface ApiResponse<T, Meta, Value> {
+//   status?: 'error' | 'success';
+//   meta?: Meta;
+//   requestId?: string;
+//   data: T;
+//   value?: Value;
+// }
+
+// interface MetaData {
+//   timestamp: string
+// }
+
+// const responseFromUserApi: ApiResponse<User, MetaData> = {
+//   data: {
+//     username: '123'
+//   },
+//   meta: {
+//     timestamp: '8468414554'
+//   }
+// }
+
+// const responseFromArticleApi: ApiResponse<Article> = {
+//   data: {
+//     title: 'Ulbi TV'
+//   }
+// }
+
+// interface Tree<T> {
+//   id?: string;
+//   name?: string;
+//   value?: T;
+//   children: Tree<T>[] | null;
+// }
+
+// const treeNode: Tree<User> = {
+//   id: '10',
+//   value: {
+//     username: '123',
+//     id: '324545',
+//     createdAt: new Date(),
+//   },
+//   children: [
+//     {
+//       value: {
+//         username: '123',
+//         id: '324545',
+//         createdAt: new Date(),
+//       },
+//       children: null
+//     }
+//   ]
+// }
+
+// // generics in functions
+// function genericFn<T>(arg: T) {
+//   return arg;
+// }
+
+// const arrowGeneric = <T, V>(arg: T, arg1: V): T => {
+//   return arg;
+// }
+
+// const data = arrowGeneric<User, Article>(
+//   {username: '123',
+//     id: '324545',
+//     createdAt: new Date(),
+//   },
+//   {title: 'Title'}
+// );
+
+// // Constraints in generics
+// function createEntity<T extends {id: string, createdAt: Date}>(arg: T) {
+//   return arg.createdAt;
+// }
+
+// const entity = createEntity<User>({id: '3245', createdAt: new Date()});
+
+// // Default types
+// interface User1 {
+//   username: string;
+// }
+
+// interface Article1 {
+//   title: string;
+// }
+
+// interface ApiResponse1<Data = string> {
+//   status?: 'error' | 'success';
+//   requestId?: string;
+//   data: Data;
+// }
+
+// const response: ApiResponse1 = {
+//   data: 'sdfsdf'
+// }
+
+// interface ApiResponse2<Data = User1> {
+//   status?: 'error' | 'success';
+//   requestId?: string;
+//   data: Data;
+// }
+
+// const response1: ApiResponse2<User1> = {
+//   data: {username: 'Username'},
+// }
+
+// // Generics in classes
+// class Order<T> {
+//   private data: T;
+
+//   constructor(arg: T) {
+//     this.data = arg;
+//   }
+// }
+
+// // Conditional types
+// type isArray<T> = T extends any[] ? true : false; // A type that checks whether the passed generic is an array
+// // // Error
+// // const first:isArray<string> = true;
+// // No error
+// const second:isArray<string> = false;
+// const third:isArray<string[]> = true;
+
+// type User3 = {
+//   username: string;
+// }
+// type RandomName<T> = T extends User3 ? { value: number } : { value: string };
+// const fourth: RandomName<User3> = {value: 45654};
+// const fifth: RandomName<number> = {value: 'string'};
+// const sixth: RandomName<{usrname: string, age: number}> = {value: 'string'}
+
+// // ---------------------------------------------------------
+
+
+
+// Narrowing of types
+function fn(arg: number | string | null) {
+  if ( typeof arg === 'number' ) {
+    arg.toFixed(2);
+    return;
+  } else if ( typeof arg === 'string' ) {
+    return;
+  }
+  return arg;
 }
 
-interface Article {
-  title: string
+function fn2( arg: number | string | null, arg2: number ) {
+  if ( arg === null ) {
+    return arg;
+  }
+  if ( arg === arg2 ) {
+    console.log( arg )
+  }
+  return arg;
 }
+
 
 interface User {
-  username?: string;
-  id: string;
-  createdAt: Date;
+  username: string;
+  age: number;
 }
 
-interface ApiResponse<T, Meta, Value> {
-  status?: 'error' | 'success';
-  meta?: Meta;
-  requestId?: string;
-  data: T;
-  value?: Value;
+interface Person {
+  lastname: string;
+  firstname: string;
+  age: number;
 }
 
-interface MetaData {
-  timestamp: string
-}
-
-const responseFromUserApi: ApiResponse<User, MetaData> = {
-  data: {
-    username: '123'
-  },
-  meta: {
-    timestamp: '8468414554'
+function fn3(arg: User | Person) {
+  if ('username' in arg) {
+    return arg;
   }
-}
-
-const responseFromArticleApi: ApiResponse<Article> = {
-  data: {
-    title: 'Ulbi TV'
+  if ('firstname' in arg) {
+    return arg;
   }
-}
-
-interface Tree<T> {
-  id?: string;
-  name?: string;
-  value?: T;
-  children: Tree<T>[] | null;
-}
-
-const treeNode: Tree<User> = {
-  id: '10',
-  value: {
-    username: '123',
-    id: '324545',
-    createdAt: new Date(),
-  },
-  children: [
-    {
-      value: {
-        username: '123',
-        id: '324545',
-        createdAt: new Date(),
-      },
-      children: null
-    }
-  ]
-}
-
-// generics in functions
-function genericFn<T>(arg: T) {
   return arg;
 }
 
-const arrowGeneric = <T, V>(arg: T, arg1: V): T => {
+
+// class Bmw {
+//   bmwDrive() {};
+// };
+// class Audi {
+//   audiDrive() {};
+// };
+
+// const bmw = new Bmw();
+// const audi = new Audi();
+
+// function fn4( arg: Bmw | Audi ) {
+//   if ( arg instanceof Bmw ) {
+//     arg.bmwDrive();
+//   } else {
+//     arg.audiDrive();
+//   }
+// };
+
+
+interface BaseCar {
+  maxSpeed: number;
+  weight: number;
+};
+
+interface Bmw extends BaseCar {
+  type: 'bmw';
+  bmwField: string;
+};
+
+interface Audi extends BaseCar {
+  type: 'audi';
+  audiField: string;
+};
+
+interface Toyota extends BaseCar {
+  type: 'toyota';
+  toyotaField: string;
+}
+
+const newCar: Bmw = {
+  type: 'bmw',
+  bmwField: 'bmwField',
+  maxSpeed: 200,
+  weight: 1600,
+};
+
+type Car = Audi | Bmw | Toyota;
+
+function fn5(arg: Car) {
+  switch(arg.type) {
+    case 'audi':
+      console.log(arg.audiField);
+      break;
+    case 'bmw':
+      console.log(arg.bmwField);
+      break;
+    case 'toyota':
+      console.log(arg.toyotaField);
+      break;
+    default:
+      console.log(arg);
+  }
   return arg;
 }
-
-const data = arrowGeneric<User, Article>(
-  {username: '123',
-    id: '324545',
-    createdAt: new Date(),
-  },
-  {title: 'Title'}
-);
-
-// Constraints in generics
-function createEntity<T extends {id: string, createdAt: Date}>(arg: T) {
-  return arg.createdAt;
-}
-
-const entity = createEntity<User>({id: '3245', createdAt: new Date()});
-
-// Default types
-interface User1 {
-  username: string;
-}
-
-interface Article1 {
-  title: string;
-}
-
-interface ApiResponse1<Data = string> {
-  status?: 'error' | 'success';
-  requestId?: string;
-  data: Data;
-}
-
-const response: ApiResponse1 = {
-  data: 'sdfsdf'
-}
-
-interface ApiResponse2<Data = User1> {
-  status?: 'error' | 'success';
-  requestId?: string;
-  data: Data;
-}
-
-const response1: ApiResponse2<User1> = {
-  data: {username: 'Username'},
-}
-
-// Generics in classes
-class Order<T> {
-  private data: T;
-
-  constructor(arg: T) {
-    this.data = arg;
-  }
-}
-
-// Conditional types
-type isArray<T> = T extends any[] ? true : false; // A type that checks whether the passed generic is an array
-// // Error
-// const first:isArray<string> = true;
-// No error
-const second:isArray<string> = false;
-const third:isArray<string[]> = true;
-
-type User3 = {
-  username: string;
-}
-type RandomName<T> = T extends User3 ? { value: number } : { value: string };
-const fourth: RandomName<User3> = {value: 45654};
-const fifth: RandomName<number> = {value: 'string'};
-const sixth: RandomName<{usrname: string, age: number}> = {value: 'string'}
 
 
 
