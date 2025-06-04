@@ -506,6 +506,20 @@ function App() {
   // }
 
 //---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
@@ -869,114 +883,183 @@ function App() {
 
 
 
-// Narrowing of types
-function fn(arg: number | string | null) {
-  if ( typeof arg === 'number' ) {
-    arg.toFixed(2);
-    return;
-  } else if ( typeof arg === 'string' ) {
-    return;
-  }
-  return arg;
-}
-
-function fn2( arg: number | string | null, arg2: number ) {
-  if ( arg === null ) {
-    return arg;
-  }
-  if ( arg === arg2 ) {
-    console.log( arg )
-  }
-  return arg;
-}
-
-
-interface User {
-  username: string;
-  age: number;
-}
-
-interface Person {
-  lastname: string;
-  firstname: string;
-  age: number;
-}
-
-function fn3(arg: User | Person) {
-  if ('username' in arg) {
-    return arg;
-  }
-  if ('firstname' in arg) {
-    return arg;
-  }
-  return arg;
-}
-
-
-// class Bmw {
-//   bmwDrive() {};
-// };
-// class Audi {
-//   audiDrive() {};
-// };
-
-// const bmw = new Bmw();
-// const audi = new Audi();
-
-// function fn4( arg: Bmw | Audi ) {
-//   if ( arg instanceof Bmw ) {
-//     arg.bmwDrive();
-//   } else {
-//     arg.audiDrive();
+// // Narrowing of types
+// function fn(arg: number | string | null) {
+//   if ( typeof arg === 'number' ) {
+//     arg.toFixed(2);
+//     return;
+//   } else if ( typeof arg === 'string' ) {
+//     return;
 //   }
+//   return arg;
+// }
+
+// function fn2( arg: number | string | null, arg2: number ) {
+//   if ( arg === null ) {
+//     return arg;
+//   }
+//   if ( arg === arg2 ) {
+//     console.log( arg )
+//   }
+//   return arg;
+// }
+
+
+// interface User {
+//   username: string;
+//   age: number;
+// }
+
+// interface Person {
+//   lastname: string;
+//   firstname: string;
+//   age: number;
+// }
+
+// function fn3(arg: User | Person) {
+//   if ('username' in arg) {
+//     return arg;
+//   }
+//   if ('firstname' in arg) {
+//     return arg;
+//   }
+//   return arg;
+// }
+
+
+// // class Bmw {
+// //   bmwDrive() {};
+// // };
+// // class Audi {
+// //   audiDrive() {};
+// // };
+
+// // const bmw = new Bmw();
+// // const audi = new Audi();
+
+// // function fn4( arg: Bmw | Audi ) {
+// //   if ( arg instanceof Bmw ) {
+// //     arg.bmwDrive();
+// //   } else {
+// //     arg.audiDrive();
+// //   }
+// // };
+
+
+// interface BaseCar {
+//   maxSpeed: number;
+//   weight: number;
 // };
 
+// interface Bmw extends BaseCar {
+//   type: 'bmw';
+//   bmwField: string;
+// };
 
-interface BaseCar {
-  maxSpeed: number;
-  weight: number;
-};
+// interface Audi extends BaseCar {
+//   type: 'audi';
+//   audiField: string;
+// };
 
-interface Bmw extends BaseCar {
-  type: 'bmw';
-  bmwField: string;
-};
+// interface Toyota extends BaseCar {
+//   type: 'toyota';
+//   toyotaField: string;
+// }
 
-interface Audi extends BaseCar {
-  type: 'audi';
-  audiField: string;
-};
+// const newCar: Bmw = {
+//   type: 'bmw',
+//   bmwField: 'bmwField',
+//   maxSpeed: 200,
+//   weight: 1600,
+// };
 
-interface Toyota extends BaseCar {
-  type: 'toyota';
-  toyotaField: string;
-}
+// type Car = Audi | Bmw | Toyota;
 
-const newCar: Bmw = {
-  type: 'bmw',
-  bmwField: 'bmwField',
-  maxSpeed: 200,
-  weight: 1600,
-};
+// function fn5(arg: Car) {
+//   switch(arg.type) {
+//     case 'audi':
+//       console.log(arg.audiField);
+//       break;
+//     case 'bmw':
+//       console.log(arg.bmwField);
+//       break;
+//     case 'toyota':
+//       console.log(arg.toyotaField);
+//       break;
+//     default:
+//       console.log(arg);
+//   }
+//   return arg;
+// }
 
-type Car = Audi | Bmw | Toyota;
+// // ---------------------------------------------------------
 
-function fn5(arg: Car) {
-  switch(arg.type) {
-    case 'audi':
-      console.log(arg.audiField);
-      break;
-    case 'bmw':
-      console.log(arg.bmwField);
-      break;
-    case 'toyota':
-      console.log(arg.toyotaField);
-      break;
-    default:
-      console.log(arg);
-  }
-  return arg;
-}
+
+
+// // Type guards
+// interface Car {
+//   maxSpeed: number;
+//   width: number;
+// }
+
+// interface BMW extends Car {
+//   type: 'bmw';
+// }
+
+// interface Audi extends Car {
+//   type: 'Audi';
+// }
+
+// interface Person {
+//   age: number;
+//   name: string;
+// }
+
+// function isBmw(value: BMW | Audi): value is BMW {
+//   return value.type === 'bmw';
+// }
+
+// function isAudi(value: BMW | Audi): value is Audi {
+//   return value.type === 'Audi';
+// }
+
+// function isCar(value: Car | Person): value is Car {
+//   return 'maxSpeed' in value && 'width' in value;
+// }
+
+// function isPerson(value: Car | Person): value is Person {
+//   return 'age' in value && 'name' in value;
+// };
+
+// function fn(data: Car | Person) {
+//   if ( isCar(data) ) {
+//     console.log(data.maxSpeed);
+//   } else {
+//     console.log(data.name)
+//   }
+// }
+
+// function fn1(data: Car | Person | BMW | Audi) {
+//   if ( isCar(data) ) {
+//     console.log(data.maxSpeed);
+
+//     if ('type' in data) {
+//       if (isBmw(data)) {
+//         console.log(data.type);
+//       } else if (isAudi(data)) {
+//         console.log(data.type);
+//       }
+//     }
+//   } else if (isPerson(data)) {
+//     console.log(data.name)
+//   }
+// }
+
+// // ---------------------------------------------------------
+
+
+
+
 
 
 
