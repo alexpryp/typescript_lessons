@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Agent } from 'http';
 
 function App() {
   // let isCompleted: boolean = false;
@@ -1058,6 +1059,58 @@ function App() {
 // // ---------------------------------------------------------
 
 
+
+// // Type conversion
+// interface Person {
+//   age: number;
+//   username: string;
+//   password: string;
+// }
+
+// const obj = {
+//   age: 25,
+//   username: 'Ulbi TV'
+// } as Person; // Type assertion
+
+// // 4.9 typescript
+// const obj1 = {
+//   age: 25,
+//   username: 'Ulbi TV',
+//   password: '123',
+// } satisfies Person;
+
+
+// // Type assertion for data received from outside
+// function JSONParse<T>(data: string): T {
+//   return JSON.parse(data) as T;
+// }
+
+// const parseJson = JSONParse<Person>('{age:25}');
+// // or
+// const parseJson1: Person = JSON.parse('{age: 25}');
+
+// async function fn2() {
+//   const data = await fetch('');
+//   // parseData has any type
+//   const parsedData = await data.json();
+// }
+
+
+// const PersonKeys = {
+//   age: 'age',
+//   username: 'username',
+//   password: 'password',
+// } as const; // makes fields read-only
+
+// //const keys = Object.keys(obj);
+
+// function keys<T extends object>(data: T): Array<keyof T> {
+//   return Object.keys(data) as Array<keyof T>
+// }
+
+// const k = keys(obj);
+
+// // ---------------------------------------------------------
 
 
 
