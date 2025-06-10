@@ -1114,47 +1114,94 @@ function App() {
 
 
 
-// Object trap
-function keys<T extends Object>(data: T): Array<keyof T> {
-  return Object.keys(data) as Array<keyof T>;
-}
-// Cases often arise when we need to specify the receipt of an object 
-// of arbitrary structure. If we specify empty object or 'Object' 
-// as the type, then any data types will be accepted without errors 
-// except null and undefined
-type EmptyObject = {};
-const obj1: EmptyObject = {};
-const obj2: EmptyObject = 1;
-const obj3: EmptyObject = "";
-const obj4: EmptyObject = () => {};
-// Types 'null' ann 'undefined' is not assignable to type 'EmptyObject'
-// const obj5: EmptyObject = null;
-// const obj6: EmptyObject = undefined;
-// With Object as a type everything is similar
-const obj7: Object = {};
-const obj8: Object = 1;
-const obj9: Object = "";
-const obj10: Object = () => {};
-// Types 'null' ann 'undefined' is not assignable to type 'Object'
-const obj11: Object = null;
-const obj12: Object = undefined;
+// // Object trap
+// function keys<T extends Object>(data: T): Array<keyof T> {
+//   return Object.keys(data) as Array<keyof T>;
+// }
+// // Cases often arise when we need to specify the receipt of an object 
+// // of arbitrary structure. If we specify empty object or 'Object' 
+// // as the type, then any data types will be accepted without errors 
+// // except null and undefined
+// type EmptyObject = {};
+// const obj1: EmptyObject = {};
+// const obj2: EmptyObject = 1;
+// const obj3: EmptyObject = "";
+// const obj4: EmptyObject = () => {};
+// // Types 'null' ann 'undefined' is not assignable to type 'EmptyObject'
+// // const obj5: EmptyObject = null;
+// // const obj6: EmptyObject = undefined;
+// // With Object as a type everything is similar
+// const obj7: Object = {};
+// const obj8: Object = 1;
+// const obj9: Object = "";
+// const obj10: Object = () => {};
+// // Types 'null' ann 'undefined' is not assignable to type 'Object'
+// const obj11: Object = null;
+// const obj12: Object = undefined;
 
-//In such cases, it is necessary to use the 'object' type 
-// with a lowercase letter, which only accepts 'Object', 'array', 
-// and 'function' types.
-const obj13: object = {};
-// type error
-// const obj14: object = 1;
-// const pbj15: object = "";
-const obj16: object = () => {};
-// type error
-// const obj17: object = null;
-// const obj18: object = undefined;
-const obj19: object = [];
+// //In such cases, it is necessary to use the 'object' type 
+// // with a lowercase letter, which only accepts 'Object', 'array', 
+// // and 'function' types.
+// const obj13: object = {};
+// // type error
+// // const obj14: object = 1;
+// // const pbj15: object = "";
+// const obj16: object = () => {};
+// // type error
+// // const obj17: object = null;
+// // const obj18: object = undefined;
+// const obj19: object = [];
 
-function keys1<T extends object>(data: T): Array<keyof T> {
-  return Object.keys(data) as Array<keyof T>;
+// function keys1<T extends object>(data: T): Array<keyof T> {
+//   return Object.keys(data) as Array<keyof T>;
+// }
+
+
+// typeof and keyof in TypeScript
+
+// typeof operator in TypeScript use for getting types
+const obj = {
+  name: "Name",
+  age: 35
+};
+
+type Person = typeof obj;
+
+const person: Person = {
+  name: "John",
+  age: 20
 }
+
+const color = "red";
+
+type RedColor = typeof color;
+
+// type error
+// const green: RedColor = "green";
+const green: RedColor = "red";
+
+
+function getData(user: Person, age: number, value: string): number {
+  return 5;
+}
+
+type GetDataFn = typeof getData;
+
+// get return value of function using ReturnType
+type GetDataReturnValue = ReturnType<typeof getData>;
+
+// get parameters type of function using Parameters
+type GetDataParams = Parameters<typeof getData>;
+
+
+// typeof operator in TypeScript is used to get the types of keys in a function
+type PersonKey = keyof typeof obj;
+
+function getByKey<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+getByKey(obj, "name");
 
 
 
