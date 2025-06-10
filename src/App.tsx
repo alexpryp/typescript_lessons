@@ -1156,52 +1156,92 @@ function App() {
 //   return Object.keys(data) as Array<keyof T>;
 // }
 
-
-// typeof and keyof in TypeScript
-
-// typeof operator in TypeScript use for getting types
-const obj = {
-  name: "Name",
-  age: 35
-};
-
-type Person = typeof obj;
-
-const person: Person = {
-  name: "John",
-  age: 20
-}
-
-const color = "red";
-
-type RedColor = typeof color;
-
-// type error
-// const green: RedColor = "green";
-const green: RedColor = "red";
+// // ---------------------------------------------------------
 
 
-function getData(user: Person, age: number, value: string): number {
-  return 5;
-}
 
-type GetDataFn = typeof getData;
+// // typeof and keyof in TypeScript
 
-// get return value of function using ReturnType
-type GetDataReturnValue = ReturnType<typeof getData>;
+// // typeof operator in TypeScript use for getting types
+// const obj = {
+//   name: "Name",
+//   age: 35
+// };
 
-// get parameters type of function using Parameters
-type GetDataParams = Parameters<typeof getData>;
+// type Person = typeof obj;
+
+// const person: Person = {
+//   name: "John",
+//   age: 20
+// }
+
+// const color = "red";
+
+// type RedColor = typeof color;
+
+// // type error
+// // const green: RedColor = "green";
+// const green: RedColor = "red";
 
 
-// typeof operator in TypeScript is used to get the types of keys in a function
-type PersonKey = keyof typeof obj;
+// function getData(user: Person, age: number, value: string): number {
+//   return 5;
+// }
 
-function getByKey<T, K extends keyof T>(obj: T, key: K): T[K] {
-  return obj[key];
-}
+// type GetDataFn = typeof getData;
 
-getByKey(obj, "name");
+// // get return value of function using ReturnType
+// type GetDataReturnValue = ReturnType<typeof getData>;
+
+// // get parameters type of function using Parameters
+// type GetDataParams = Parameters<typeof getData>;
+
+
+// // typeof operator in TypeScript is used to get the types of keys in a function
+// type PersonKey = keyof typeof obj;
+
+// function getByKey<T, K extends keyof T>(obj: T, key: K): T[K] {
+//   return obj[key];
+// }
+
+// getByKey(obj, "name");
+
+// // ---------------------------------------------------------
+
+
+
+// // optional (?.) and non-null assertion operators (!.)
+// interface Person {
+//   name: string;
+//   address?: {
+//     street: string;
+//   };
+//   getAge?: () => number;
+//   array?: string[]
+// };
+
+// const person: Person = {
+//   name: "Name",
+// };
+
+// const street = person.address?.street;
+
+// function prepareUser(user: Person) {
+//   console.log(user.address?.street);
+//   console.log(user.getAge?.());
+//   console.log(user.array?.[0]);
+// }
+
+// prepareUser({name: '123'});
+
+
+// // non-null assertion operators (!.)
+// // not safe, causes errors
+// console.log(person.address!.street);
+
+// // ---------------------------------------------------------
+
+
 
 
 
