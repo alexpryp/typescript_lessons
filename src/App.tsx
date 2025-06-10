@@ -1242,6 +1242,52 @@ function App() {
 // // ---------------------------------------------------------
 
 
+// // enum
+// enum Color {
+//   RED = "red",
+//   GREEN = "green",
+//   BLUE = "blue"
+// }
+
+// function setColor(color: Color) {
+//   console.log(color);
+// }
+
+// setColor(Color.BLUE);
+
+
+// // const enum
+// const enum Color2 {
+//   RED = "red",
+//   GREEN = "green",
+//   BLUE = "blue"
+// }
+
+// function setColor2(color: Color2) {
+//   console.log(color);
+// }
+
+// setColor2(Color2.BLUE);
+
+
+// // replace enum with a regular object
+// const Color3 = {
+//   RED: "red",
+//   GREEN: "green",
+//   BLUE: "blue"
+// } as const;
+
+// type TColor3 = typeof Color3[keyof typeof Color3];
+// // or
+// type ValueOf<T> = T[keyof T];
+// type TColor4 = ValueOf<typeof Color3>
+
+// // ---------------------------------------------------------
+
+
+
+
+
 
 
 
