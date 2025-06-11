@@ -1285,7 +1285,128 @@ function App() {
 // // ---------------------------------------------------------
 
 
+// // Mapped types
+// interface IUser {
+//   name: string;
+//   age: number;
+//   friends:  Array<string>;
+// }
 
+// type Type1<T> = {
+//   [Key in keyof T]: T[Key];
+// }
+
+// const User1: Type1<IUser> = {
+//   name: "Name",
+//   age: 23,
+//   friends: ["firiend1", "friend2", "friend3"]
+// }
+// // allows you to change the values ​​of object properties
+// User1.age = 34;
+
+// type ReadonlyType1<T> = {
+//   readonly [Key in keyof T]: T[Key];
+// }
+
+// const User2: ReadonlyType1<IUser> = {
+//   name: "Name",
+//   age: 23,
+//   friends: ["firiend1", "friend2", "friend3"]
+// }
+// //does not allow changing the object's property values 
+// // ​​due to the readonly directive
+// //User2.age = 36;
+
+// type OptionalReadonlyType1<T> = {
+//   readonly [Key in keyof T]?: T[Key] | null;
+// }
+
+// const User3: OptionalReadonlyType1<IUser> = {
+//   name: "Name"
+// }
+
+
+// // readonly and optional properties
+// type OptionalType<T> = {
+//   readonly [Key in keyof T]?: T[Key];
+// }
+
+// const OptioanalObj: OptionalType<IUser> = {
+//   name: "Name"
+// } 
+
+// // not readonly and not optional properties
+// type EditType<T> = {
+//   -readonly [Key in keyof T]-?: T[Key];
+// }
+
+// const EditObj: EditType<IUser> = {
+//   name: "Name",
+//   age: 21,
+//   friends: ["friend1", "friend2"]
+// } 
+
+// // type overriding
+// // NewUser type is readonly and optional
+// type NewUser = OptionalType<IUser>
+// // NewUser2 type in not readonly and not optional
+// type NewUser2 = EditType<NewUser>
+
+
+// type ArrayAnalog<T> = {
+//   [Key in number]: T;
+// }
+// const array:  ArrayAnalog<string> = ['strin1', 'string2', 'string3']
+// // type error: only strings allowed in array
+// //const array1:  ArrayAnalog<string> = ['strin1', 'string2', 4]
+
+// type ObjectAnalog<T> = {
+//   [Key in string]: T;
+// }
+// const object: ObjectAnalog<string> = {
+//   'property1': 'string1',
+//   'propery2': 'string2',
+//   'property3': 'string3'
+// }
+
+// // we have 3 interfaces that have the same property with name 'id'
+// interface IUser1 {
+//   name: string;
+//   age: number;
+//   id: string;
+//   friends: Array<string>;
+// }
+
+// interface ICar1 {
+//   name: string;
+//   id: string;
+// }
+
+// interface IRandomObj1 {
+//   name: string;
+//   id: string;
+// }
+
+// // using the exclude directive we exclude the 'id' property from interfaces
+// type TWithoutType<T> = {
+//   [Key in keyof T as Exclude<Key, 'id'>]: T[Key];
+// }
+
+// const CarWithoutId: TWithoutType<ICar1> = {
+//   name: 'Audi'
+// }
+
+// const UserWithoutId: TWithoutType<IUser1> = {
+//   name: 'string',
+//   age: 35,
+//   friends: ['friend1', 'friend2']
+// }
+
+// const RandomObjWithoutId: TWithoutType<IRandomObj1> = {
+//   name: 'Object'
+// }
+
+// ---------------------------------------------------------
 
 
 
